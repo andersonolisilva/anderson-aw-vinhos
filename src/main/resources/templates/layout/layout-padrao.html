@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -50,7 +51,10 @@
 				</div>
 
 				<ul class="nav navbar-nav  navbar-right">
-					<li><a href="#"><em class="fa  fa-sign-out"></em></a></li>
+				<li>
+					<p class="navbar-text" th:text="${#authentication.name}"></p>
+				</li>
+					<li><a th:href="@{/logout}"><em class="fa  fa-sign-out"></em></a></li>
 				</ul>
 
 			</div>
@@ -61,9 +65,11 @@
 
 				<nav class="aw-menu  js-menu">
 					<ul class="aw-menu__list">
-						<li class="aw-menu__item is-active"><a href="/vinhos/novo"><i
+					
+						<li class="aw-menu__item" sec:authorize="hasRole('ROLE_CADASTRAR_VINHO')"><a th:href="@{/vinhos/novo}"><i
 								class="fa  fa-fw  fa-home"></i><span>Cadastro de Vinho</span></a></li>
-						<li class="aw-menu__item"><a href="/vinhos"><i
+					
+						<li class="aw-menu__item" sec:authorize="hasRole('ROLE_PESQUISAR_VINHO')"><a th:href="@{/vinhos}"><i
 								class="fa  fa-fw  fa-home"></i><span>Pesquisa de Vinho</span></a></li>
 					</ul>
 				</nav>
