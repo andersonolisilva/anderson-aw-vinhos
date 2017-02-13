@@ -43,12 +43,12 @@ public class VinhosController {
 		}
 		vinhos.save(vinho);
 		redirect.addFlashAttribute("message", "Vinho salvo com sucesso.");
-		return new ModelAndView("redirect:/vinhos/novo");
+		return new ModelAndView("redirect:vinhos/novo");
 	}
 	
 	@GetMapping
 	public ModelAndView pesquisar(VinhoFilter vinhoFilter){
-		ModelAndView mv = new ModelAndView("/vinho/pesquisa-vinho");
+		ModelAndView mv = new ModelAndView("vinho/pesquisa-vinho");
 		mv.addObject("vinhosPesquisados", vinhos.findByNomeContainingIgnoreCase(
 				Optional.ofNullable(vinhoFilter.getNome()).orElse("%")));
 		return mv;
