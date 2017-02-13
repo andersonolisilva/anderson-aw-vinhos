@@ -43,7 +43,7 @@ public class VinhosController {
 		}
 		vinhos.save(vinho);
 		redirect.addFlashAttribute("message", "Vinho salvo com sucesso.");
-		return new ModelAndView("redirect:vinhos/novo");
+		return new ModelAndView("redirect:/vinhos/novo");
 	}
 	
 	@GetMapping
